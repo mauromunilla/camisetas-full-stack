@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CamisetaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,14 @@ use App\Http\Controllers\CamisetaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
 
-Route::resource("camiseta", CamisetaController::class);
+Route::get('/catalogo', [ProductoController::class, 'index']);
+Route::get('/catalogo/create', [ProductoController::class, 'create']);
+Route::get('/catalogo/{producto}', [ProductoController::class, 'show']);
+Route::get('/catalogo/{producto}/edit', [ProductoController::class, 'edit']);
+
+Route::post('/catalogo', [ProductoController::class, 'store']);
+
+Route::post('/login', [UsuarioController::class, 'login']);
