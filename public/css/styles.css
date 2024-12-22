@@ -1,0 +1,42 @@
+body{
+    background-color: #dee2e6;
+}
+
+footer{
+    background-color: #198754;
+}
+
+.imagenCarrusel{
+    max-height: 30vw;
+    width: 100%;
+    object-fit: contain;
+}
+
+.bannerPromos{
+    background-color: white;
+}
+
+footer nav{
+    background-color: #75b798;
+}
+
+.derechosReservados{
+    margin-top: 10px;
+}
+
+.producto{
+    height: 25em;
+}
+
+.disponibles{
+    font-size: 14px;
+    font-style: italic;
+}
+
+.nombreProducto{
+    font-size: 30px !important;
+}
+
+.precioProducto{
+    font-size: medium;
+}
