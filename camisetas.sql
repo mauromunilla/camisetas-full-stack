@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-12-2024 a las 23:08:09
+-- Tiempo de generación: 24-12-2024 a las 00:12:44
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -114,20 +114,39 @@ INSERT INTO `productos` (`id_producto`, `camiseta_id`, `talle_id`, `cantidad_pro
 
 CREATE TABLE `talles` (
   `id_talle` int(11) NOT NULL,
-  `medida` varchar(64) NOT NULL
+  `categoria_id` int(11) NOT NULL,
+  `medida` varchar(64) NOT NULL,
+  `ancho_talle` int(11) NOT NULL,
+  `largo_talle` int(11) NOT NULL,
+  `altura_recomendada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `talles`
 --
 
-INSERT INTO `talles` (`id_talle`, `medida`) VALUES
-(1, 'XS'),
-(2, 'S'),
-(3, 'M'),
-(4, 'L'),
-(5, 'XL'),
-(6, 'XXL');
+INSERT INTO `talles` (`id_talle`, `categoria_id`, `medida`, `ancho_talle`, `largo_talle`, `altura_recomendada`) VALUES
+(1, 1, 'XS', 48, 69, 160),
+(2, 1, 'S', 50, 71, 165),
+(3, 1, 'M', 52, 73, 170),
+(4, 1, 'L', 54, 75, 175),
+(5, 1, 'XL', 56, 77, 180),
+(6, 1, 'XXL', 58, 78, 185),
+(8, 4, 'S', 48, 68, 165),
+(9, 4, 'M', 50, 70, 170),
+(10, 4, 'L', 52, 72, 175),
+(11, 4, 'XL', 54, 74, 180),
+(12, 4, 'XXL', 56, 76, 185),
+(13, 2, 'S', 42, 63, 160),
+(14, 2, 'M', 44, 66, 165),
+(15, 2, 'L', 46, 69, 170),
+(16, 2, 'XL', 49, 71, 175),
+(17, 2, 'XXL', 52, 73, 180),
+(18, 3, 'S', 33, 42, 100),
+(19, 3, 'M', 35, 45, 105),
+(20, 3, 'L', 37, 48, 115),
+(21, 3, 'XL', 39, 50, 125),
+(22, 3, 'XXL', 43, 55, 135);
 
 -- --------------------------------------------------------
 
@@ -170,7 +189,8 @@ ALTER TABLE `productos`
 -- Indices de la tabla `talles`
 --
 ALTER TABLE `talles`
-  ADD PRIMARY KEY (`id_talle`);
+  ADD PRIMARY KEY (`id_talle`),
+  ADD KEY `Categorias` (`categoria_id`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -204,7 +224,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `talles`
 --
 ALTER TABLE `talles`
-  MODIFY `id_talle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_talle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -222,6 +242,12 @@ ALTER TABLE `usuarios`
 ALTER TABLE `productos`
   ADD CONSTRAINT `camisetas` FOREIGN KEY (`camiseta_id`) REFERENCES `camisetas` (`id_camiseta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `talles` FOREIGN KEY (`talle_id`) REFERENCES `talles` (`id_talle`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `talles`
+--
+ALTER TABLE `talles`
+  ADD CONSTRAINT `Categorias` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id_categoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
