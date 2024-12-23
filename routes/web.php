@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\TallesController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::get('/catalogo', [ProductoController::class, 'index']);
 Route::get('/catalogo/create', [ProductoController::class, 'create']);
 Route::get('/catalogo/{producto}', [ProductoController::class, 'show']);
 Route::get('/catalogo/{producto}/edit', [ProductoController::class, 'edit']);
+Route::get('/guia_talles', [TallesController::class, 'index']);
 
 Route::post('/catalogo', [ProductoController::class, 'store']);
 
