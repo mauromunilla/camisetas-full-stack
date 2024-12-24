@@ -33,8 +33,12 @@ class ProductoController extends Controller
         else{
             $productos = Producto::all();
         }
+
+        $categorias = Categoria::all();
+
         $parametros =[
-            "productos" => $productos
+            "productos" => $productos,
+            "categorias" => $categorias
         ];
         
         return view('producto.productos', $parametros);
