@@ -1,5 +1,11 @@
 @include('layout.header')
-    
+
+  @if (session()->has("success"))
+    <div class="container">
+      <div class="alert alert-success text-center"> {{ session("success") }} </div>
+    </div>
+  @endif
+
   <section class="carrusel container-fluid col-lg-12 overflow-hidden">
     <div id="SlideCarrusel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">

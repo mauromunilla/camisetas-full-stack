@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-12-2024 a las 00:12:44
+-- Tiempo de generación: 24-12-2024 a las 23:56:46
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -157,8 +157,16 @@ INSERT INTO `talles` (`id_talle`, `categoria_id`, `medida`, `ancho_talle`, `larg
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `nombre` varchar(250) NOT NULL,
+  `email` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `password`) VALUES
+(1, 'tomas', 'correo@gmail.com', '$2y$10$T/RknsRePIhqLe9X6JiT6./nGj2IczF1Xel7Xj3vb6WiAtdRoF0ZO');
 
 --
 -- Índices para tablas volcadas
@@ -230,7 +238,7 @@ ALTER TABLE `talles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas

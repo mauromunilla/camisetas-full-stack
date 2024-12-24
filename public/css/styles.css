@@ -40,3 +40,14 @@ footer nav{
 .precioProducto{
     font-size: medium;
 }
+
+.mensajeBienvenida{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.btn.link{
+    color: black !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+}

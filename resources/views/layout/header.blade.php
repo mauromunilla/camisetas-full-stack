@@ -46,9 +46,17 @@
                         </form>
                     </ul>
                 </div>
-                <button class="btn" type="submit">
-                    <a class="nav-link" href="#" role="button">Iniciar Sesion</a>
-                </button> 
+                @auth
+                    <p class="mensajeBienvenida text-center">¡Bienvenido {{ auth()->user()->nombre }}! </p>
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button class="btn" type="submit">salir <i class="bi bi-box-arrow-right m1"></i></button>
+                    </form>
+                @else
+                    <button class="btn" type="submit">
+                        <a class="nav-link" href="/register" role="button">Iniciar Sesion/Registro</a>
+                    </button>
+                @endauth
             </div>
         </nav>
     </div>
