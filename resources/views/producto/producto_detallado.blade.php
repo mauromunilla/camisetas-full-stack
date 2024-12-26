@@ -7,8 +7,8 @@
                 <img src="..." class="" alt="...">
             </div>
             <div class="col-xl-4 col-sm-fluid">
-                <h6 class="nombreProducto" id="nombreProducto"> {{ $producto->camiseta->nombre_producto }}</h6>
-                <h5 class="precioProducto" id="precioProducto">$ {{ $producto->camiseta->precio_producto }}</h5>
+                <h6 class="nombreProducto" id="nombreProducto"> {{ $producto->nombre_producto }}</h6>
+                <h5 class="precioProducto" id="precioProducto">$ {{ $producto->precio_producto }}</h5>
                 <a href="#" class="btn btn-primary">Comprar</a>
             </div>
         </div>

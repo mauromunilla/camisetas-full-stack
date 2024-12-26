@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Talle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TallesController extends Controller
 {
@@ -14,7 +15,7 @@ class TallesController extends Controller
      */
     public function index()
     {
-        $talles = Talle::all();
+        $talles = DB::table('guia_talles')->get();
         $parametros =[
             "talles" => $talles
         ];

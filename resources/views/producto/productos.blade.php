@@ -11,8 +11,8 @@
                             <a href="catalogo/{{$producto->id_producto}}">
                             <img src="..." class="card-img-top" alt="...">
                             <div class="descripcionProducto card-body">
-                                <h6 id="nombreProducto">{{ $producto->camiseta->nombre_producto }}</h6>
-                                <h5 id="precioProducto">$ {{ $producto->camiseta->precio_producto }}</h5>
+                                <h6 id="nombreProducto">{{ $producto->nombre_producto }}</h6>
+                                <h5 id="precioProducto">$ {{ $producto->precio_producto }}</h5>
                             </div>
                             </a>
                             <a href="#" class="btn btn-primary">Comprar</a>

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TallesController;
 use App\Http\Controllers\UserController;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +34,9 @@ Route::get('/register', [UserController::class, 'index']);
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
+
+Route::get('/admin/login', [AdminController::class, 'index']);
+Route::post('/admin/login', [AdminController::class, 'login']);
+Route::post('/admin/logout', [AdminController::class, 'logout']);
+
+Route::get('/admin/panel', [AdminController::class,'productos']);

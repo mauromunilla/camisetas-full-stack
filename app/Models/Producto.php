@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Producto extends Model
@@ -12,19 +11,16 @@ class Producto extends Model
     protected $primary_key = "id_producto";
     public $timestamps = false;
 
-    public function categoria(): BelongsToMany
+    protected $fillable = ["nombre_producto", "precio_producto", "imagen_producto", "destacado"];
+
+    public function categorias(): BelongsToMany
     {
-        return $this->belongsToMany(Categoria::class, 'categorias' ,'categoria_id', 'id_categoria');
+        return $this->belongsToMany(Categoria::class, 'categoria_producto' ,'producto_id', 'categoria_id');
     }
 
-    public function camiseta(): BelongsTo
+    public function talles(): BelongsToMany
     {
-        return $this->belongsTo(Camiseta::class, 'camiseta_id', 'id_camiseta');
-    }
-
-    public function talle(): BelongsTo
-    {
-        return $this->belongsTo(Talle::class, 'talle_id', 'id_talle');
+        return $this->belongsToMany(Talle::class, 'producto_talle', 'producto_id', 'talle_id')->withPivot('cantidad');
     }
 
 }

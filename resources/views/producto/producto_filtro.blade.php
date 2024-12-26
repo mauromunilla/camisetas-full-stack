@@ -58,8 +58,8 @@
                             <div class="accordion-body">
                                 @foreach ($categorias as $categoria)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault{{$categoria->id_categoria}}">
-                                        <label class="form-check-label" for="flexCheckDefault{{$categoria->id_categoria}}">
+                                        <input class="form-check-input" type="checkbox" value="{{$categoria->id}}" id="flexCheckCategorias{{$categoria->id}}">
+                                        <label class="form-check-label" for="flexCheckCategorias{{$categoria->id}}">
                                             {{$categoria->nombre_categoria}}
                                         </label>
                                     </div>
@@ -75,11 +75,11 @@
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
-                                @foreach ($productos as $producto)
+                                @foreach ($talles as $talle)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault{{$producto->id_producto}}">
-                                        <label class="form-check-label" for="flexCheckDefault{{$producto->id_producto}}">
-                                            {{$producto->talle->medida}}
+                                        <input class="form-check-input" type="checkbox" value="{{$talle->id}}" id="flexCheckTalles{{$talle->id}}">
+                                        <label class="form-check-label" for="flexCheckTalles{{$talle->id}}">
+                                            {{$talle->medida}}
                                         </label>
                                     </div>
                                 @endforeach

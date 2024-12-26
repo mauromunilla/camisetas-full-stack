@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
-use App\Models\Camiseta;
 use App\Models\Producto;
+use App\Models\Talle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,17 +18,14 @@ class ProductoController extends Controller
     public function index(Request $request)
     {
         if($request->has("busqueda")){
-            //$busqueda = $request->busqueda;
-            
-            $productos = Producto::with("camiseta", "talles", "categoria")
-            ->orderBy("id_producto", "desc")->distinct()
-            ->get();
 
-            //$productos = DB::table("productos")
-            //->select("id_producto as id", "camiseta_id", "talle_id")
-            //->where("id", "like", "%.$busqueda.%")
-            //->orderBy("id", "desc")
-            //->get();
+            $busqueda = $request->busqueda;
+            
+            $productos = DB::table("productos")
+            ->select("id_producto as id", "camiseta_id", "talle_id")
+            ->where("id", "like", "%.$busqueda.%")
+            ->orderBy("id", "desc")
+            ->get();
         }
         else{
             $productos = Producto::all();
@@ -36,9 +33,12 @@ class ProductoController extends Controller
 
         $categorias = Categoria::all();
 
+        $talles = Talle::all();
+
         $parametros =[
             "productos" => $productos,
-            "categorias" => $categorias
+            "categorias" => $categorias,
+            "talles" => $talles
         ];
         
         return view('producto.productos', $parametros);

@@ -51,3 +51,31 @@ footer nav{
     font-size: 12px !important;
     font-weight: bold !important;
 }
+
+.imagenLogin{
+    background-image: url(../images/club-kits.png);
+    background-size: cover;
+    max-width: 100%;
+    min-height: 400px !important;
+}
+
+.fondoLogin{
+    background-image: url(../images/wallpaper.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.fondoBlanco{
+    margin-top: 100px;
+    background-color: white;
+}
+
+.botonLogin{
+    margin-top: 10px;
+    margin-bottom: 100px;
+}
+
+.tituloLogin{
+    backdrop-filter: blur(10px);
+}
