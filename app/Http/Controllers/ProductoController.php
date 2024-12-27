@@ -21,10 +21,9 @@ class ProductoController extends Controller
 
             $busqueda = $request->busqueda;
             
-            $productos = DB::table("productos")
-            ->select("id_producto as id", "camiseta_id", "talle_id")
-            ->where("id", "like", "%.$busqueda.%")
-            ->orderBy("id", "desc")
+            $productos = Producto::select("id_producto", "nombre_producto", "precio_producto")
+            ->where("nombre_producto", "like", "%$busqueda%")
+            ->orderBy("nombre_producto", "desc")
             ->get();
         }
         else{

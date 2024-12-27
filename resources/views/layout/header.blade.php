@@ -40,10 +40,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/guia_talles">Guia Talles</a>
                         </li>
-                        <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Buscar</button>
-                        </form>
+                        <form action="" method="GET" class="d-flex">
+                            <input class="form-control me-2" type="text" id="busqueda" name="busqueda" placeholder="Buscar" autocomplete="off">
+                            <button class="btn btn-outline-success">Buscar</button>
+                        </form> 
                     </ul>
                 </div>
                 @auth
