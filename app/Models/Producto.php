@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Producto extends Model
 {
     protected $table = "productos";
-    protected $primary_key = "id_producto";
+    protected $primaryKey = "id_producto";
     public $timestamps = false;
 
     protected $fillable = ["nombre_producto", "precio_producto", "imagen_producto", "destacado"];

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Talle extends Model
 {
     protected $table = "talles";
-    protected $primary_key = "id_talle";
+    protected $primary_key = "id";
     public $timestamps = false;
 
     protected $fillable = ["medida"];

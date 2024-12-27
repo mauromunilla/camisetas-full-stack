@@ -74,10 +74,7 @@ class AdminController extends Controller
             ->get();
         }
         else{
-            $productos = Producto::join('producto_talle', 'productos.id_producto', '=', 'producto_talle.producto_id')
-            ->join('categoria_producto', 'productos.id_producto', '=', 'categoria_producto.producto_id')
-            ->join('categorias', 'categoria_producto.categoria_id', '=', 'categorias.id')
-            ->with(['talles', 'categorias'])
+            $productos = Producto::with(['talles','categorias'])
             ->get();
         }
 
