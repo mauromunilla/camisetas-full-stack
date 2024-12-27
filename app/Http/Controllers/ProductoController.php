@@ -51,7 +51,15 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view("producto.producto_create");
+        $categorias = Categoria::orderBy('nombre_categoria', 'asc')->get();
+        $talles = Talle::all();
+
+        $parametros = [
+            "categorias" => $categorias,
+            "talles" => $talles
+        ];
+
+        return view("admin.admin_producto_create", $parametros);
     }
 
     /**
@@ -64,9 +72,7 @@ class ProductoController extends Controller
     {
         $validated = $request->validate([
             "nombre_producto" => "required|unique:camisetas,nombre_producto|max:255",
-            "talle_producto" => "required|max:3",
             "precio_producto" => "required|numeric|gt:0",
-            "categoria_producto" => "required|max:255",
             "imagen_producto" => "required|mime:jpeg,jpg,png|size:512"
         ], [
             "required" => "Este campo es obligatorio!",
@@ -74,17 +80,8 @@ class ProductoController extends Controller
         ]);
 
         $producto = Producto::create($validated);
-
-        //DB::insert("INSERT INTO camisetas (nombre_producto, precio_producto, categoria_producto, imagen_producto) VALUES (?,?,?,?)", 
-        //    [$request->nombre_producto,
-        //    $request->precio_producto,
-        //    $request->categoria_producto,
-        //    $request->imagen_producto]);
-
-        //DB::insert("INSERT INTO talles (talle) VALUES (?)", [$request->talle]);
-
         
-        return response()->redirectTo("/inicio");
+        return response()->redirectTo("/admin/panel");
     }
 
     /**

@@ -23,7 +23,6 @@ Route::get('/', function () {
 });
 
 Route::get('/catalogo', [ProductoController::class, 'index']);
-Route::get('/catalogo/create', [ProductoController::class, 'create']);
 Route::get('/catalogo/{producto}', [ProductoController::class, 'show']);
 Route::get('/catalogo/{producto}/edit', [ProductoController::class, 'edit']);
 Route::get('/guia_talles', [TallesController::class, 'index']);
@@ -40,3 +39,5 @@ Route::post('/admin/login', [AdminController::class, 'login']);
 Route::post('/admin/logout', [AdminController::class, 'logout']);
 
 Route::get('/admin/panel', [AdminController::class,'productos']);
+Route::get('/admin/producto/create', [ProductoController::class, 'create']);
+Route::post('/admin/producto/create', [ProductoController::class, 'store']);
