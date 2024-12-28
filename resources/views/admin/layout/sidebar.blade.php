@@ -26,7 +26,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="/admin/panel/categorias">
                     <i class="bi bi-tags fs-3"></i>
                     <span>Categorias</span>
                 </a>

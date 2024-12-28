@@ -201,3 +201,9 @@ main p{
     }
   }
 }
+
+.categoria{
+  border-width: 1px;
+  border: 1px solid black;
+  border-radius: 0;
+}
