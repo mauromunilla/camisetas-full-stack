@@ -42,3 +42,19 @@ Route::get('/admin/panel', [AdminController::class,'productos']);
 Route::get('/admin/producto/create', [ProductoController::class, 'create']);
 Route::post('/admin/producto/create', [ProductoController::class, 'store']);
 Route::delete('/admin/producto/{producto}', [ProductoController::class, 'destroy']);
+
+Route::get('/contacto', function () {
+    return view('contacto');
+});
+
+Route::get('/medios-pago', function () {
+    return view('/medios_pago');
+});
+
+Route::get('/preguntas-frecuentes', function () {
+    return view('/faq');
+});
+
+Route::get('/terminos-condiciones', function () {
+    return view('/politicas');
+});

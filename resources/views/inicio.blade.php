@@ -132,18 +132,16 @@
 
   <section class="text-center py-4">
     <div class="nosotros container-sm col-lg-10">
-      <h3>Sobre Nosotros</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac elit aliquam, vehicula velit eget, interdum turpis. Proin ultrices dui sapien, nec tristique eros varius at. Praesent vitae fermentum ante. Nullam suscipit arcu justo, et pulvinar urna molestie nec. Cras ultrices commodo risus quis rutrum. Morbi facilisis justo non nulla efficitur rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent nulla nulla, sollicitudin at imperdiet eu, viverra a massa. Mauris a odio eu magna fermentum blandit. Duis semper, velit feugiat ornare luctus, quam tellus volutpat ex, quis dapibus lectus neque eget enim. Curabitur venenatis varius ultrices. Nulla viverra tempor elementum.
-
-        Nullam id mattis velit. Morbi ac nisl laoreet, ornare dui vel, accumsan odio. Sed nec magna consequat, pharetra est varius, fringilla ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean accumsan massa et nisi porttitor, ultrices suscipit purus venenatis. Sed rutrum leo quis enim posuere, at vulputate velit vehicula. Nulla eget eros non arcu ultrices ullamcorper a a magna. Ut a porttitor leo. Phasellus nec mauris et velit aliquet ultrices.
-
-        In tempus leo a est convallis, eget iaculis turpis bibendum. Pellentesque rhoncus nisi ut odio gravida suscipit. Curabitur porta ac dui sit amet convallis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin blandit, velit in mollis sagittis, dui erat pharetra tortor, ut viverra sem tellus eu magna. Quisque tincidunt purus ac pellentesque pharetra. Duis vitae elementum ex. Curabitur consequat scelerisque tortor, id bibendum massa auctor non. Praesent ut lacus venenatis, venenatis ligula at, cursus tortor. Aliquam erat volutpat.
-
-        Mauris eget erat tincidunt, volutpat nisl malesuada, maximus massa. Cras convallis cursus laoreet. Praesent varius ante eu risus elementum ornare. Vivamus sed tortor commodo, vehicula dolor in, viverra nibh. Etiam et nisi fermentum, blandit felis nec, finibus elit. Praesent facilisis mi sit amet nunc luctus, vel elementum ligula faucibus. Maecenas pulvinar aliquet ipsum, sed aliquet lorem faucibus et.
-
-        Pellentesque eu eros tincidunt, bibendum felis eu, molestie magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut semper sollicitudin tellus, ac convallis ligula dapibus quis. Aenean sit amet efficitur massa. Vivamus vitae ex scelerisque, commodo sapien eget, gravida ante. Cras ut volutpat mauris. Donec bibendum tristique massa, non feugiat ex sagittis vitae.
-      </p>
+      <h3 class="tituloNos">Sobre Nosotros</h3>
+      <p>Somos Tomás Coro, Mauro Munilla, Marco Szapari y Octavio Valiente, estudiantes de Ingeniería en Sistemas de la UTN.</p>
+        
+      <p>Este proyecto web forma parte de nuestra formación en el curso de desarrollo Full Stack.</p>
+         
+      <p>Nuestro objetivo es aplicar y consolidar los conocimientos adquiridos, creando soluciones innovadoras y funcionales.</p>  
+        
+      <p>Nos apasiona la tecnología y el desarrollo de software, y estamos comprometidos con el aprendizaje continuo y la excelencia en cada uno de nuestros proyectos.</p>  
+        
+      <p>¡Gracias por visitar nuestra página!</p>  
     </div>
   </section>
 

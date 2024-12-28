@@ -25,7 +25,7 @@ footer nav{
 }
 
 .producto{
-    height: 25em;
+    height: 15em;
 }
 
 .disponibles{
@@ -78,4 +78,28 @@ footer nav{
 
 .tituloLogin{
     backdrop-filter: blur(10px);
+}
+
+main i {
+    font-size: 24px;
+    color:cornflowerblue;
+}
+
+.nosotros {
+    font-size: 24px;
+    font-family: Georgia;
+}
+
+.tituloNos {
+    font-size: 35px;
+    padding-bottom: 15px;
+}
+
+.politicas {
+    font-size: 18px;
+    font-family: arial;
+}
+
+.navFooter a {
+    margin: 12px;
 }
