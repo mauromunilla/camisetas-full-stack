@@ -69,7 +69,7 @@ class AdminController extends Controller
         if($request->has("busqueda")){
             $busqueda = $request->busqueda;
             
-            $productos = Producto::with('talles')->select('camiseta_id')->where('camiseta_id.nombre_producto', 'like', "%.$busqueda.%")
+            $productos = Producto::with(['talles', 'categorias'])->select('nombre_producto')->where('nombre_producto', 'like', "%.$busqueda.%")
             ->groupBy('camiseta_id')
             ->get();
         }
@@ -78,11 +78,8 @@ class AdminController extends Controller
             ->get();
         }
 
-        $categorias = Categoria::all();
-
         $parametros =[
             "productos" => $productos,
-            "categorias" => $categorias
         ];
         
         return view('admin.admin_panel', $parametros);

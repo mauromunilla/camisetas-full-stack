@@ -131,9 +131,24 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit($id)
     {
-        return view("producto.producto_edit", ["producto"=>$producto]);
+        $producto = Producto::with(['talles', 'categorias'])->where('id_producto', $id)->first();
+
+        if (!$producto) {
+            return redirect()->route('/admin/panel')->with('fail', 'Producto no encontrado.');
+        }
+
+        $categorias = Categoria::all();
+        $talles = Talle::all();
+
+        $parametros = [
+            "producto" => $producto,
+            "categorias" => $categorias,
+            "talles" => $talles
+        ];
+
+        return view("admin.admin_producto_edit", $parametros);
     }
 
     /**
@@ -143,9 +158,44 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Producto $producto, Request $request)
     {
-        //
+        $validated = $request->validate([
+            "nombre_producto" => "required|max:255",
+            "precio_producto" => "required|numeric|gt:0",
+            //"imagen_producto" => "required|mimes:jpeg,jpg,png|size:512" Hay que descomentar cuando implementemos las url en la DB
+            'destacado' => 'nullable|boolean',
+            'talles' => 'nullable|array',
+            'categorias' => 'nullable|array',
+            'cantidad_talle' => 'nullable|array',
+            'cantidad_talle.*' => 'nullable|numeric|min:0'
+        ], [
+            "nombre_producto.required" => "Este campo es obligatorio!",
+            "precio_producto.required" => "El producto debe tener definido un precio mayor a 0 !",
+        ]);
+
+        $producto->nombre_producto = $validated["nombre_producto"];
+        $producto->precio_producto = $validated["precio_producto"];
+        //$producto->imagen_producto = $validated["imagen_producto"];
+        $producto->destacado = $validated["destacado"] ?? false;
+
+        $producto->save();
+
+        if ($request->has('cantidad') && $request->has('talles')) {
+            foreach ($request->input('talles') as $talle_id) {
+                $cantidad = $request->input('cantidad.' . $talle_id);
+                $talle = Talle::find($talle_id);
+                if ($talle) {
+                    $talle->productos()->updateExistingPivot($producto->id_producto, ['cantidad' => $cantidad]);
+                }
+            }
+        }
+
+        if ($request->has('categorias')) {
+            $producto->categorias()->sync($request->input('categorias'));
+        }
+
+        return response()->redirectTo('/admin/panel')->with('success', 'Producto actualizado correctamente.');
     }
 
     /**

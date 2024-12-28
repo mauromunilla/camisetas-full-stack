@@ -14,13 +14,8 @@ class Talle extends Model
 
     protected $fillable = ["medida"];
 
-    public function producto(): BelongsToMany
+    public function productos(): BelongsToMany
     {
         return $this->belongsToMany(Producto::class, "producto_talle", "talle_id", "producto_id")->withPivot('cantidad');
-    }
-
-    public function categoria(): BelongsTo
-    {
-        return $this->belongsTo(Categoria::class, "categoria_id" ,"id_categoria");
     }
 }

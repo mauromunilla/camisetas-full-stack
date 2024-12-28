@@ -5,32 +5,61 @@
             <a href="/admin/panel" class="btn btn-secondary m3"> Volver a inicio </a>
         </div>
         <div class="row fluid">
+            {{var_dump($producto)}}
 
-                <form action="/admin/producto/create" method="post">
+                <form action="/admin/producto/{{ $producto->id_producto }}" method="post">
                     @csrf
+                    @method("PUT")
                     <div class="mb-3">
                         <label for="formFileMultiple" class="form-label"></label>
-                        <input class="form-control" type="file" id="formFileMultiple" name="imagen_producto" value="{{ old('imagen_producto') }}" multiple >
+                        <input 
+                            class="form-control" 
+                            type="file" 
+                            id="formFileMultiple" 
+                            name="imagen_producto" 
+                            value="{{ old('imagen_producto', $producto->imagen_producto) }}" 
+                            multiple >
                         @error('imagen_producto')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-floating mb-3">
-                        <input name="nombre_producto" type="text" class="form-control" id="nombre_producto" placeholder="Producto" value="{{ old('nombre_producto') }}">
+                        <input 
+                            name="nombre_producto" 
+                            type="text" 
+                            class="form-control" 
+                            id="nombre_producto" 
+                            placeholder="Producto" 
+                            value="{{ old('nombre_producto', $producto->nombre_producto) }}"
+                            >
                         <label for="nombre_producto">Producto</label>
                         @error('nombre_producto')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-floating mb-3">
-                        <input name="precio_producto" type="text" class="form-control" id="precio_producto" placeholder="Precio" value="{{ old('precio_producto') }}">
+                        <input 
+                            name="precio_producto" 
+                            type="text" 
+                            class="form-control" 
+                            id="precio_producto" 
+                            placeholder="Precio" 
+                            value="{{ old('precio_producto', $producto->precio_producto) }}"
+                            >
                         <label for="precio_producto">Precio</label>
                         @error('precio_producto')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" class="btn-check" name="destacado" id="destacado" autocomplete="off" value="1"{{ old('destacado') == '1' ? 'checked' : '' }}>
+                        <input 
+                            type="checkbox" 
+                            class="btn-check" 
+                            name="destacado" 
+                            id="destacado" 
+                            autocomplete="off" 
+                            value="1"{{ old('destacado', $producto->destacado) == '1' ? 'checked' : '' }}
+                            >
                         <label class="btn btn-outline-success" for="destacado">Destacar</label>
                     </div>
                     <br>
@@ -44,8 +73,7 @@
                                         class="form-control"
                                         name="cantidad[{{$talle->id}}]"
                                         id="cantidad{{$talle->id}}"
-                                        value="{{ old('cantidad.' . $talle->id) }}"
-                                        min="0"
+                                        value="{{ old('cantidad.' . $talle->id, $producto->talles->find($talle->id)?->pivot->cantidad ?? '') }}"
                                     >
                                 </div>
                                 <div class="form-check form-check-inline col-xl-19 col-lg-8 col-sm-6" >
@@ -55,7 +83,7 @@
                                         id="checkboxTalle{{$talle->id}}"
                                         name="talles[]"
                                         value="{{$talle->id}}"
-                                        {{ in_array($talle->id, old('talles', [])) ? 'checked' : '' }}
+                                        {{ $producto->talles->contains('id', $talle->id) ? 'checked' : '' }}
                                     >
                                     <label class="form-check-label" for="checkboxTalle{{$talle->id}}">{{$talle->medida}}</label>
                                 </div>
@@ -67,19 +95,20 @@
                     <div class="row row-cols-auto gx3">
                         @foreach ($categorias as $categoria)
                             <div>
-                                <input 
+                                <input
                                     class="form-check-input"
                                     type="checkbox" 
                                     id="checkboxCategoria{{$categoria->id}}" 
-                                    name="categorias[]" value="{{$categoria->id}}" 
-                                    {{ in_array($categoria->id, old('categorias', [])) ? 'checked' : '' }}
+                                    name="categorias[]" 
+                                    value="{{$categoria->id}}" 
+                                    {{ $producto->categorias->contains('id', $categoria->id) ? 'checked' : '' }}
                                 >
                                 <label class="form-check-label" for="checkboxCategoria{{$categoria->id}}">{{$categoria->nombre_categoria}}</label>
                             </div>
                         @endforeach
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-secondary pt3">Agregar</button>
+                    <button type="submit" class="btn btn-secondary pt3">Modificar</button>
                 </form>
             </div>
         </div>
