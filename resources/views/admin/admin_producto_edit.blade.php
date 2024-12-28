@@ -5,8 +5,6 @@
             <a href="/admin/panel" class="btn btn-secondary m3"> Volver a inicio </a>
         </div>
         <div class="row fluid">
-            {{var_dump($producto)}}
-
                 <form action="/admin/producto/{{ $producto->id_producto }}" method="post">
                     @csrf
                     @method("PUT")
