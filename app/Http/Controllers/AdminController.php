@@ -20,6 +20,11 @@ class AdminController extends Controller
         return view('admin.admin_login');
     }
 
+    public function create()
+    {
+        return view("admin.admin_register");
+    }
+
     public function register(Request $request)
     {
         $datos = $request->validate([
@@ -61,7 +66,7 @@ class AdminController extends Controller
     public function logout()
     {
         auth()->logout();
-        return response()->redirectTo("/admin/login");
+        return response()->redirectTo("/admin/login")->with("success", "Se cerro sesion exitosamente!");
     }
 
     public function productos(Request $request)

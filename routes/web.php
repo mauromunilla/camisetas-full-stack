@@ -36,6 +36,8 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::get('/admin/login', [AdminController::class, 'index']);
 Route::post('/admin/login', [AdminController::class, 'login']);
 Route::post('/admin/logout', [AdminController::class, 'logout']);
+Route::get('/admin/add', [AdminController::class, 'create']);
+Route::post('/admin/add', [AdminController::class, 'register']);
 
 Route::get('/admin/panel', [AdminController::class,'productos']);
 Route::get('/admin/producto/create', [ProductoController::class, 'create']);

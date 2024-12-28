@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="/admin/add">
                     <i class="bi bi-people fs-3"></i>
                     <span>Agregar Admin</span>
                 </a>
