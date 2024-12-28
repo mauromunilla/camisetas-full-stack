@@ -1,9 +1,5 @@
 @include('admin.layout.sidebar')
 
-    @if (session()->has("fail"))
-            <div class="alert alert-danger text-center fixed"> {{ session("fail") }} </div>
-    @endif
-
     <div class="container-fluid mb5">
         <div class="mt3">
             <a href="/admin/panel" class="btn btn-secondary m3"> Volver a inicio </a>
@@ -68,7 +64,7 @@
                     <br>
                     <br>
                     <h4>Categorias</h4>             <!-- ver bootstrap multiselect -->
-                    <div class="row row-cols-auto">
+                    <div class="row row-cols-auto gx3">
                         @foreach ($categorias as $categoria)
                             <div>
                                 <input 
@@ -87,6 +83,5 @@
                 </form>
             </div>
         </div>
-
 
 @include('admin.layout.footer')

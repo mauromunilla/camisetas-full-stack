@@ -1,4 +1,10 @@
 @include('admin.layout.sidebar')
+
+    @if (session()->has("success"))
+        <div class="alert alert-success text-center fixed-top"> {{ session("success") }} </div>
+    @endif
+
+
     <div class="container fluid">
         <h1>Panel ABM de productos</h1>
         <a href="/admin/producto/create"><button class="btn btn-link">Agregar nuevo producto</button></a>
@@ -32,9 +38,12 @@
                         </h5>
                         <h5 id="destacado">Destacado: <i class="{{ ($producto->destacado) ? "bi bi-check-lg" : "bi bi-x-lg" }}"></i></h5>
                     </div>
-                    </a>
-                    <a href="#" class="btn btn-primary">Editar</a>
-                    <a href="#" class="btn btn-primary">Borrar</a>
+                    <a href="#" class="btn btn-primary"><i class="bi bi-pencil-square"> Editar</i></a>
+                    <form action="/admin/producto/{{$producto->id_producto}}" method="POST">
+                        @csrf
+                        @method("DELETE")
+                        <button class="btn btn-primary"><i class="bi bi-trash"> Borrar</i></button>
+                    </form>
                 </div>
             @endforeach
         </section>

@@ -41,3 +41,4 @@ Route::post('/admin/logout', [AdminController::class, 'logout']);
 Route::get('/admin/panel', [AdminController::class,'productos']);
 Route::get('/admin/producto/create', [ProductoController::class, 'create']);
 Route::post('/admin/producto/create', [ProductoController::class, 'store']);
+Route::delete('/admin/producto/{producto}', [ProductoController::class, 'destroy']);

@@ -159,10 +159,10 @@ class ProductoController extends Controller
         $respuesta = $producto->delete();
 
         if($respuesta){
-            return redirect("/")->with("success", "Se elimino el producto correctamente");
+            return redirect("/admin/panel")->with("success", "Se elimino el producto correctamente");
         }
         else{
-            return redirect("/")->with("fail", "Hubo un fallo al intentar eliminar el producto");
+            return redirect("/admin/producto/create")->with("fail", "Hubo un fallo al intentar eliminar el producto");
         }
     }
 }
