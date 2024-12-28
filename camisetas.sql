@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-12-2024 a las 00:41:52
+-- Tiempo de generación: 28-12-2024 a las 22:10:53
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -153,7 +153,7 @@ CREATE TABLE `productos` (
   `id_producto` int(11) NOT NULL,
   `nombre_producto` varchar(250) NOT NULL,
   `precio_producto` int(11) NOT NULL,
-  `imagen_producto` varchar(250) NOT NULL,
+  `imagen_producto` varchar(250) DEFAULT NULL,
   `destacado` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -167,7 +167,10 @@ INSERT INTO `productos` (`id_producto`, `nombre_producto`, `precio_producto`, `i
 (7, '24-25 Real Madrid local - Jugador', 40000, '', 0),
 (8, '96-97 Liverpool visitante manga larga', 35000, '', 1),
 (15, '24-25 Boca Jrs local - fan', 30000, '', 1),
-(16, '95 Italia local ', 40000, '', 1);
+(16, '95 Italia local ', 40000, '', 1),
+(19, '24-25 Chelsea local - Jugador', 35000, '', 0),
+(20, '24-25 Bayern Arquero local - Fan', 15000, '', 1),
+(21, '06-07 Boca Jrs. Local', 26000, '', 1);
 
 -- --------------------------------------------------------
 
@@ -179,7 +182,7 @@ CREATE TABLE `producto_talle` (
   `id` int(11) NOT NULL,
   `producto_id` int(11) NOT NULL,
   `talle_id` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL
+  `cantidad` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -277,8 +280,8 @@ ALTER TABLE `categorias`
 --
 ALTER TABLE `categoria_producto`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `categorias_productos` (`categoria_id`),
-  ADD KEY `productos` (`producto_id`);
+  ADD KEY `productos` (`producto_id`),
+  ADD KEY `categorias_productos` (`categoria_id`);
 
 --
 -- Indices de la tabla `guia_talles`
@@ -298,8 +301,8 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `producto_talle`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `talles` (`talle_id`),
-  ADD KEY `productos_talles` (`producto_id`);
+  ADD KEY `productos_talles` (`producto_id`),
+  ADD KEY `talles` (`talle_id`);
 
 --
 -- Indices de la tabla `talles`
@@ -333,7 +336,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `categoria_producto`
 --
 ALTER TABLE `categoria_producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `guia_talles`
@@ -345,13 +348,13 @@ ALTER TABLE `guia_talles`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de la tabla `producto_talle`
 --
 ALTER TABLE `producto_talle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT de la tabla `talles`
@@ -373,8 +376,8 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `categoria_producto`
 --
 ALTER TABLE `categoria_producto`
-  ADD CONSTRAINT `categorias_productos` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `productos` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id_producto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `categorias_productos` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `productos` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `guia_talles`
@@ -386,8 +389,8 @@ ALTER TABLE `guia_talles`
 -- Filtros para la tabla `producto_talle`
 --
 ALTER TABLE `producto_talle`
-  ADD CONSTRAINT `productos_talles` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id_producto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `talles` FOREIGN KEY (`talle_id`) REFERENCES `talles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `productos_talles` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `talles` FOREIGN KEY (`talle_id`) REFERENCES `talles` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
