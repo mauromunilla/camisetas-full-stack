@@ -71,15 +71,33 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "nombre_producto" => "required|unique:camisetas,nombre_producto|max:255",
+            "nombre_producto" => "required|unique:productos,nombre_producto|max:255",
             "precio_producto" => "required|numeric|gt:0",
-            "imagen_producto" => "required|mime:jpeg,jpg,png|size:512"
+            //"imagen_producto" => "required|mimes:jpeg,jpg,png|size:512" Hay que descomentar cuando implementemos las url en la DB
+            'destacado' => 'nullable|boolean',
+            'talles' => 'nullable|array',
+            'categorias' => 'nullable|array',
+            'cantidad_talle' => 'nullable|array',
+            'cantidad_talle.*' => 'nullable|numeric|min:0'
         ], [
-            "required" => "Este campo es obligatorio!",
+            "nombre_producto.required" => "Este campo es obligatorio!",
             "precio_producto.required" => "El producto debe tener definido un precio mayor a 0 !",
         ]);
 
-        $producto = Producto::create($validated);
+
+        if($validated)
+        {
+            $producto = Producto::create($validated);
+        }
+        
+
+        if ($request->has('categorias')) {
+            $producto->categorias()->sync($request->input('categorias'));
+        }
+
+        if ($request->has('talles')) {
+            $producto->talles()->syncWithPivotValues($request->input('talles'), ['cantidad' => true]);
+        }
         
         return response()->redirectTo("/admin/panel");
     }
