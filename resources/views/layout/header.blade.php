@@ -32,10 +32,13 @@
                             Categorias
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Hombre</a></li>
-                            <li><a class="dropdown-item" href="#">Retro</a></li>
-                            <li><a class="dropdown-item" href="#">Mujer</a></li>
-                            <li><a class="dropdown-item" href="#">Niños</a></li>
+                            @foreach($categorias as $categoria)
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('catalogo.filtro', ['precio_min' => 0, 'precio_max' => 100000, 'categorias' => [$categoria->id]]) }}">
+                                        {{ $categoria->nombre_categoria }}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                         </li>
                         <li class="nav-item">

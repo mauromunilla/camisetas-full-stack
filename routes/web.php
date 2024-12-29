@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::get('/catalogo', [ProductoController::class, 'index']);
-Route::get('/catalogo/filtro', [ProductoController::class, 'filtro']);
+Route::get('/catalogo/filtro', [ProductoController::class, 'filtro'])->name('catalogo.filtro');
 Route::get('/catalogo/{producto}', [ProductoController::class, 'show']);
 Route::get('/catalogo/{producto}/edit', [ProductoController::class, 'edit']);
 Route::get('/guia_talles', [TallesController::class, 'index']);
