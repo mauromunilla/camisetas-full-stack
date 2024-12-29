@@ -215,4 +215,45 @@ class ProductoController extends Controller
             return redirect("/admin/producto/create")->with("fail", "Hubo un fallo al intentar eliminar el producto");
         }
     }
+
+    public function filtro(Request $request)
+    {
+        $precioMin = $request->input('precio_min', 0); 
+        $precioMax = $request->input('precio_max', 100000); 
+        $categorias = $request->input('categorias', []); 
+        $talles = $request->input('talles', []); 
+
+        $query = Producto::query();
+
+        // Filtrar por rango de precios
+        $query->whereBetween('precio_producto', [$precioMin, $precioMax]);
+
+        // Filtrar por categorías (si están seleccionadas)
+        if (!empty($categorias)) {
+            $query->whereHas('categorias', function ($query) use ($categorias) {
+                $query->whereIn('categoria_id', $categorias);
+            });
+        }
+
+        // Filtrar por talles (si están seleccionados)
+        if (!empty($talles)) {
+            $query->whereHas('talles', function ($query) use ($talles) {
+                $query->whereIn('talle_id', $talles);
+            });
+        }
+
+        $productos = $query->get();
+
+        $categorias = Categoria::all();
+
+        $talles = Talle::all();
+
+        $parametros =[
+            "productos" => $productos,
+            "categorias" => $categorias,
+            "talles" => $talles
+        ];
+        
+        return view('producto.productos', $parametros);        
+    }
 }
