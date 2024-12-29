@@ -24,3 +24,5 @@
             @endforeach
         </section>
     </div>
+
+@include('admin.layout.footer')
