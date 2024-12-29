@@ -38,7 +38,7 @@
                         </h5>
                         <h5 id="destacado">Destacado: <i class="{{ ($producto->destacado) ? "bi bi-check-lg" : "bi bi-x-lg" }}"></i></h5>
                     </div>
-                    <a href="#" class="btn btn-primary"><i class="bi bi-pencil-square"> Editar</i></a>
+                    <a href="/admin/producto/{{$producto->id_producto}}/edit" class="btn btn-primary"><i class="bi bi-pencil-square"> Editar</i></a>
                     <form action="/admin/producto/{{$producto->id_producto}}" method="POST">
                         @csrf
                         @method("DELETE")

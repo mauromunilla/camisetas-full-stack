@@ -10,6 +10,11 @@
         <title>AdminLogin</title>
     </head>
     <body class="fondoLogin align-items-center justify-content-center vh-100">
+
+        @if (session()->has("success"))
+            <div class="alert alert-success text-center fixed-top"> {{ session("success") }} </div>
+        @endif
+        
         <section>
             <div class="container-sm rounded fondoBlanco mx-auto d-block">
                 <div class="row justify-content-center ">
