@@ -58,7 +58,7 @@ class CategoriasController extends Controller
 
         if($validated)
         {
-            $producto = Categoria::create($validated);
+            Categoria::create($validated);
         }
 
         return response()->redirectTo("/admin/panel/categorias")->with('success', 'Se creó correctamente la nueva categoría!');
@@ -72,7 +72,9 @@ class CategoriasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoria = Categoria::where('id', $id)->first();
+
+        return view('admin.admin_categoria_edit', ["categoria" => $categoria]);
     }
 
     /**
@@ -82,9 +84,23 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Categoria $categoria, Request $request)
     {
-        //
+        $validated = $request->validate([
+            "nombre_categoria" => "required|unique:categorias,nombre_categoria|max:50",
+        ], [
+            "nombre_categoria.required" => "Este campo es obligatorio!",
+            "nombre_categoria.unique" => "El nombre de la categoria debe ser diferente a una ya existente!",
+            "nombre_categoria.max" => "El nombre de la categoria es demasiado largo!",
+        ]);
+
+        if($validated)
+        {
+            $categoria->nombre_categoria = $validated["nombre_categoria"];
+            $categoria->save();
+        }
+
+        return response()->redirectTo("/admin/panel/categorias")->with('success', 'Se modificó correctamente la categoría!');
     }
 
     /**
@@ -93,8 +109,15 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Categoria $categoria)
     {
-        //
+        $respuesta = $categoria->delete();
+
+        if($respuesta){
+            return redirect("/admin/panel/categorias")->with("success", "Se elimino la categoria correctamente");
+        }
+        else{
+            return redirect("/admin/panel/categorias")->with("fail", "Hubo un fallo al intentar eliminar la categoria");
+        }
     }
 }

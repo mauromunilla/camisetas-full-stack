@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TallesController;
 use App\Http\Controllers\UserController;
@@ -42,6 +43,15 @@ Route::get('/admin/panel', [AdminController::class,'productos']);
 Route::get('/admin/producto/create', [ProductoController::class, 'create']);
 Route::post('/admin/producto/create', [ProductoController::class, 'store']);
 Route::delete('/admin/producto/{producto}', [ProductoController::class, 'destroy']);
+Route::get('/admin/producto/{producto}/edit', [ProductoController::class, 'edit']);
+Route::put('/admin/producto/{producto}', [ProductoController::class, 'update']);
+
+Route::get('/admin/panel/categorias', [CategoriasController::class, 'index']);
+Route::get('/admin/categoria/create', [CategoriasController::class, 'create']);
+Route::post('/admin/categoria/create', [CategoriasController::class, 'store']);
+Route::delete('/admin/categoria/{categoria}', [CategoriasController::class, 'destroy']);
+Route::get('/admin/categoria/{categoria}/edit', [CategoriasController::class, 'edit']);
+Route::put('/admin/categoria/{categoria}', [CategoriasController::class, 'update']);
 
 Route::get('/contacto', function () {
     return view('contacto');
