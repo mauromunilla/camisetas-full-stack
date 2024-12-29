@@ -14,9 +14,23 @@ class TallesController extends Controller
     public function index()
     {
         $talles = DB::table('guia_talles')->get();
+
         $parametros =[
             "talles" => $talles
         ];
+
         return view('guia_talles', $parametros);
     }
+
+    public function tabla()
+    {
+        $talles = DB::table('guia_talles')->get();
+
+        $parametros =[
+            "talles" => $talles
+        ];
+
+        return view('admin.admin_panel_talles', $parametros);
+    }
+
 }

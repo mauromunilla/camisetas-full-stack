@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="/admin/panel/talles">
                     <i class="bi bi-rulers fs-3"></i>
                     <span>Talles</span>
                 </a>

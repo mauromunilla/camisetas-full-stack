@@ -30,7 +30,7 @@
                 <div class="d-grid gap-2 d-md-block">
                     <button type="submit" class="btn btn-secondary">Modificar</button>
                     <a href="/admin/panel/categorias" class="btn btn-secondary"> Volver a categorias </a>
-                  </div>
+                </div>
             </form>
         </div>
     </div>

@@ -5,7 +5,6 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TallesController;
 use App\Http\Controllers\UserController;
-use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +38,8 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::get('/admin/login', [AdminController::class, 'index']);
 Route::post('/admin/login', [AdminController::class, 'login']);
 Route::post('/admin/logout', [AdminController::class, 'logout']);
+Route::get('/admin/add', [AdminController::class, 'create']);
+Route::post('/admin/add', [AdminController::class, 'register']);
 
 Route::get('/admin/panel', [AdminController::class,'productos']);
 Route::get('/admin/producto/create', [ProductoController::class, 'create']);
@@ -53,6 +54,8 @@ Route::post('/admin/categoria/create', [CategoriasController::class, 'store']);
 Route::delete('/admin/categoria/{categoria}', [CategoriasController::class, 'destroy']);
 Route::get('/admin/categoria/{categoria}/edit', [CategoriasController::class, 'edit']);
 Route::put('/admin/categoria/{categoria}', [CategoriasController::class, 'update']);
+
+Route::get('/admin/panel/talles', [TallesController::class, 'tabla']);
 
 Route::get('/contacto', function () {
     return view('contacto');
