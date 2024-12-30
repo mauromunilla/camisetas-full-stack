@@ -12,7 +12,9 @@
         <section class="productos full-width">
             @foreach ($productos as $producto)
                 <div class="producto container fluid m-3">
-                    <img src="{{$producto->imagen_producto}}" class="card-img-top" alt="...">
+                    @foreach ($producto->imagenes as $imagen)
+                        <img src="{{$imagen->url}}" class="imagenProducto" alt="...">
+                    @endforeach
                     <div class="descripcionProducto card-body">
                         <h6 id="nombreProducto">Nombre: {{ $producto->nombre_producto }}</h6>
                         <h5 id="precioProducto">Precio: ${{ $producto->precio_producto }}</h5>
@@ -38,12 +40,14 @@
                         </h5>
                         <h5 id="destacado">Destacado: <i class="{{ ($producto->destacado) ? "bi bi-check-lg" : "bi bi-x-lg" }}"></i></h5>
                     </div>
-                    <a href="/admin/producto/{{$producto->id_producto}}/edit" class="btn btn-primary"><i class="bi bi-pencil-square"> Editar</i></a>
-                    <form action="/admin/producto/{{$producto->id_producto}}" method="POST">
-                        @csrf
-                        @method("DELETE")
-                        <button class="btn btn-primary"><i class="bi bi-trash"> Borrar</i></button>
-                    </form>
+                    <div class="button-container">
+                        <a href="/admin/producto/{{$producto->id_producto}}/edit" class="btn btn-primary"><i class="bi bi-pencil-square"> Editar</i></a>
+                        <form action="/admin/producto/{{$producto->id_producto}}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <button class="btn btn-primary"><i class="bi bi-trash"> Borrar</i></button>
+                        </form>
+                    </div>
                 </div>
             @endforeach
         </section>

@@ -14,13 +14,15 @@
                     @foreach ($productos as $producto)
                         <div class="producto col-xl-3 col-md-6">
                             <a href="catalogo/{{$producto->id_producto}}">
-                                <img src="..." class="card-img-top" alt="...">
+                                @if( $producto->imagenes->first())
+                                    <img src="{{ $producto->imagenes->first()->url }}" class="imagenProducto" alt="...">
+                                @endif
                                 <div class="descripcionProducto card-body">
                                     <h6 id="nombreProducto">{{ $producto->nombre_producto }}</h6>
                                     <h5 id="precioProducto">$ {{ $producto->precio_producto }}</h5>
                                 </div>
                             </a>
-                            <a href="#" class="btn btn-primary">Comprar</a>
+                            <a href="#" class="btn btn-primary mb-2">Comprar</a>
                         </div>
                     @endforeach
                 </div>

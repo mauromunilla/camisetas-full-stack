@@ -4,7 +4,7 @@
     <div class="container-sm">
         <div class="row">
             <div class="ImagenProducto col-xl-8 col-sm-fluid">
-                <img src="..." class="" alt="...">
+                <img src="{{ $producto->imagenes->first()->url }}" class="imagenProducto" alt="...">
             </div>
             <div class="col-xl-4 col-sm-fluid">
                 <h6 class="nombreProducto" id="nombreProducto"> {{ $producto->nombre_producto }}</h6>

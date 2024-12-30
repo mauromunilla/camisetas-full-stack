@@ -25,7 +25,7 @@ footer nav{
 }
 
 .producto{
-    height: 15em;
+    height: 100%;
 }
 
 .disponibles{
@@ -102,4 +102,9 @@ main i {
 
 .navFooter a {
     margin: 12px;
+}
+
+.imagenProducto{
+    width: 300px;
+    height: 300px;
 }

@@ -5,17 +5,16 @@
             <a href="/admin/panel" class="btn btn-secondary m3"> Volver a inicio </a>
         </div>
         <div class="row fluid">
-                <form action="/admin/producto/{{ $producto->id_producto }}" method="post">
+                <form action="/admin/producto/{{ $producto->id_producto }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
                     <div class="mb-3">
-                        <label for="formFileMultiple" class="form-label"></label>
+                        <label for="imagen_producto" class="form-label"></label>
                         <input 
                             class="form-control" 
                             type="file" 
-                            id="formFileMultiple" 
-                            name="imagen_producto" 
-                            value="{{ old('imagen_producto', $producto->imagen_producto) }}" 
+                            id="imagen_producto" 
+                            name="imagen_producto[]" 
                             multiple >
                         @error('imagen_producto')
                             <div class="alert alert-danger">{{ $message }}</div>

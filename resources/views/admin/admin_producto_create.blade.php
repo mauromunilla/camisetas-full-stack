@@ -10,11 +10,11 @@
         </div>
         <div class="row fluid">
 
-                <form action="/admin/producto/create" method="post">
+                <form action="/admin/producto/create" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="formFileMultiple" class="form-label"></label>
-                        <input class="form-control" type="file" id="formFileMultiple" name="imagen_producto" value="{{ old('imagen_producto') }}" multiple >
+                        <label for="imagen_producto" class="form-label"></label>
+                        <input class="form-control" type="file" id="imagen_producto" name="imagen_producto[]" multiple required>
                         @error('imagen_producto')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Imagen;
 use App\Models\Producto;
 use App\Models\Talle;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
@@ -73,33 +74,57 @@ class ProductoController extends Controller
         $validated = $request->validate([
             "nombre_producto" => "required|unique:productos,nombre_producto|max:255",
             "precio_producto" => "required|numeric|gt:0",
-            //"imagen_producto" => "required|mimes:jpeg,jpg,png|size:512" Hay que descomentar cuando implementemos las url en la DB
+            'imagen_producto' => "nullable|array",
+            'imagen_producto.*' => "mimes:jpeg,jpg,png,webp|max:5120",
             'destacado' => 'nullable|boolean',
             'talles' => 'nullable|array',
             'categorias' => 'nullable|array',
-            'cantidad_talle' => 'nullable|array',
-            'cantidad_talle.*' => 'nullable|numeric|min:0'
+            'cantidad' => 'nullable|array',
+            'cantidad.*' => 'nullable|numeric|min:0'
         ], [
             "nombre_producto.required" => "Este campo es obligatorio!",
             "precio_producto.required" => "El producto debe tener definido un precio mayor a 0 !",
         ]);
 
 
-        if($validated)
-        {
+        if($validated){
+
             $producto = Producto::create($validated);
-        }
-        
 
-        if ($request->has('categorias')) {
-            $producto->categorias()->sync($request->input('categorias'));
-        }
+            if ($request->hasFile('imagen_producto')) {
+                foreach ($request->file('imagen_producto') as $image) {
+                    $path = $image->store('imagenes', 'public');
+                    $url = Storage::url($path);
 
-        if ($request->has('talles')) {
-            $producto->talles()->syncWithPivotValues($request->input('talles'), ['cantidad' => true]);
-        }
+                    Imagen::create([
+                        'producto_id' => $producto->id_producto,
+                        'url' => $url,
+                    ]);
+                }
+            }
+
+            if ($request->has('categorias')) {
+                $producto->categorias()->sync($request->input('categorias'));
+            }
+
+            if ($request->has('talles')) {
+                $talles = $request->input('talles');
+                $cantidadTalle = $request->input('cantidad', []);
+                
+                $pivotData = [];
+                foreach ($talles as $talleId) {
+                    $cantidad = isset($cantidadTalle[$talleId]) ? $cantidadTalle[$talleId] : 0;
+                    $pivotData[$talleId] = ['cantidad' => $cantidad];
+                }
         
-        return response()->redirectTo("/admin/panel");
+                $producto->talles()->sync($pivotData);
+            }
+            
+            return response()->redirectTo("/admin/panel")->with("success", "Producto creado exitosamente!");
+        }
+        else{
+            return response()->redirectTo("/admin/panel/create")->with("fail", "Error al crear el producto!");
+        }
     }
 
     /**
@@ -161,9 +186,10 @@ class ProductoController extends Controller
     public function update(Producto $producto, Request $request)
     {
         $validated = $request->validate([
-            "nombre_producto" => "required|max:255",
-            "precio_producto" => "required|numeric|gt:0",
-            //"imagen_producto" => "required|mimes:jpeg,jpg,png|size:512" Hay que descomentar cuando implementemos las url en la DB
+            'nombre_producto' => "required|max:255",
+            'precio_producto' => "required|numeric|gt:0",
+            'imagen_producto' => "nullable|array",
+            //'imagen_producto.*' => "mimes:jpeg,jpg,png,webp|max:5120",
             'destacado' => 'nullable|boolean',
             'talles' => 'nullable|array',
             'categorias' => 'nullable|array',
@@ -176,23 +202,39 @@ class ProductoController extends Controller
 
         $producto->nombre_producto = $validated["nombre_producto"];
         $producto->precio_producto = $validated["precio_producto"];
-        //$producto->imagen_producto = $validated["imagen_producto"];
         $producto->destacado = $validated["destacado"] ?? false;
 
-        $producto->save();
+        if($validated){
+            if ($request->hasFile('imagen_producto')) {
 
-        if ($request->has('cantidad') && $request->has('talles')) {
-            foreach ($request->input('talles') as $talle_id) {
-                $cantidad = $request->input('cantidad.' . $talle_id);
-                $talle = Talle::find($talle_id);
-                if ($talle) {
-                    $talle->productos()->updateExistingPivot($producto->id_producto, ['cantidad' => $cantidad]);
+                $producto->imagenes()->delete();
+
+                foreach ($request->file('imagen_producto') as $image) {
+                    $path = $image->store('imagenes', 'public');
+                    $url = Storage::url($path);
+
+                    Imagen::create([
+                        'producto_id' => $producto->id_producto,
+                        'url' => $url,
+                    ]);
                 }
             }
-        }
 
-        if ($request->has('categorias')) {
-            $producto->categorias()->sync($request->input('categorias'));
+            $producto->save();
+
+            if ($request->has('cantidad') && $request->has('talles')) {
+                foreach ($request->input('talles') as $talle_id) {
+                    $cantidad = $request->input('cantidad.' . $talle_id);
+                    $talle = Talle::find($talle_id);
+                    if ($talle) {
+                        $talle->productos()->updateExistingPivot($producto->id_producto, ['cantidad' => $cantidad]);
+                    }
+                }
+            }
+
+            if ($request->has('categorias')) {
+                $producto->categorias()->sync($request->input('categorias'));
+            }
         }
 
         return response()->redirectTo('/admin/panel')->with('success', 'Producto actualizado correctamente.');

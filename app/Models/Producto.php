@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Producto extends Model
 {
@@ -11,7 +12,7 @@ class Producto extends Model
     protected $primaryKey = "id_producto";
     public $timestamps = false;
 
-    protected $fillable = ["nombre_producto", "precio_producto", "imagen_producto", "destacado"];
+    protected $fillable = ["nombre_producto", "precio_producto", "destacado"];
 
     public function categorias(): BelongsToMany
     {
@@ -21,6 +22,11 @@ class Producto extends Model
     public function talles(): BelongsToMany
     {
         return $this->belongsToMany(Talle::class, 'producto_talle', 'producto_id', 'talle_id')->withPivot('cantidad');
+    }
+
+    public function imagenes(): HasMany
+    {
+        return $this->hasMany(Imagen::class, 'producto_id', 'id_producto');
     }
 
 }

@@ -212,3 +212,8 @@ main p{
   display: flex;
   gap: 10px;
 }
+
+.imagenProducto{
+  width: 150px;
+  height: 150px;
+}
