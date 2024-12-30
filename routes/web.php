@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoriasController;
-use App\Http\Controllers\ProductoController;
-use App\Http\Controllers\TallesController;
-use App\Http\Controllers\UserController;
+use App\Models\Producto;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TallesController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\CategoriasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +20,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('inicio');
+    $productosDestacados = Producto::where('destacado', 1)->get();
+    return view('inicio', ['productosDestacados' => $productosDestacados]);
 });
 
 Route::get('/catalogo', [ProductoController::class, 'index']);
-Route::get('/catalogo/filtro', [ProductoController::class, 'filtro']);
+Route::get('/catalogo/filtro', [ProductoController::class, 'filtro'])->name('catalogo.filtro');
 Route::get('/catalogo/{producto}', [ProductoController::class, 'show']);
 Route::get('/catalogo/{producto}/edit', [ProductoController::class, 'edit']);
 Route::get('/guia_talles', [TallesController::class, 'index']);
