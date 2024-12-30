@@ -55,7 +55,7 @@
   <section class="text-center py-4">
     <div class="nosotros container-sm col-lg-10">
       <h3 class="tituloNos">Sobre Nosotros</h3>
-      <p>Somos Tomás Coro, Mauro Munilla, Marco Szapari y Octavio Valiente, estudiantes de Ingeniería en Sistemas de la UTN.</p>
+      <p>Somos Tomás Coro, Mauro Munilla y Marco Szapari, estudiantes de Ingeniería en Sistemas de la UTN.</p>
         
       <p>Este proyecto web forma parte de nuestra formación en el curso de desarrollo Full Stack.</p>
          

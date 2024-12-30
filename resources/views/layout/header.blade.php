@@ -44,7 +44,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/guia_talles">Guia Talles</a>
                         </li>
-                        <form action="" method="GET" class="d-flex">
+                        <form action="/catalogo" method="GET" class="d-flex">
                             <input class="form-control me-2" type="text" id="busqueda" name="busqueda" placeholder="Buscar" autocomplete="off">
                             <button class="btn btn-outline-success">Buscar</button>
                         </form> 
