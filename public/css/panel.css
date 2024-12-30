@@ -1,5 +1,5 @@
 :root{
-  --base-clr: #978e8e;
+  --base-clr: #000000;
   --line-clr: #42434a;
   --hover-clr: #222533;
   --text-clr: #e6e6ef;
@@ -16,6 +16,7 @@
 body{
   min-height: 100vh;
   min-height: 100dvh;
+  padding-bottom: 60px;
   background-color: var(--base-clr);
   color: var(--text-clr);
   display: grid;
@@ -218,4 +219,9 @@ main p{
 .imagenProducto{
   width: 150px;
   height: 150px;
+}
+
+.buttonBlanco{
+  text-decoration: none !important;
+  color: white;
 }

@@ -16,7 +16,7 @@
             <li>
                 <span class="logo">Fulbol</span>
                 <button onclick=toggleSidebar() id="toggle-btn">
-                    <i class="bi bi-arrow-bar-right"></i>
+                    <i class="bi bi-arrow-bar-right buttonBlanco"></i>
                 </button>
             </li>
             <li>
@@ -52,8 +52,8 @@
             <li class="mt-auto">
                 <form action="/admin/logout" method="POST">
                     @csrf
-                    <button class="btn" type="submit"><i class="bi bi-door-open fs-3" ></i></button>
-                    <span> salir <span>
+                    <button class="btn logoutButton" type="submit"><i class="bi bi-door-open fs-3 buttonBlanco" ></i> <span class="buttonBlanco m-3">  Salir <span></button>
+                    
                 </form>
             </li>
         </ul>

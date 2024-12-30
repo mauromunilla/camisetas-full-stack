@@ -222,13 +222,14 @@ class ProductoController extends Controller
 
             $producto->save();
 
-            if ($request->has('cantidad') && $request->has('talles')) {
+            if ($request->has('talles') && $request->has('cantidad')) {
+
                 foreach ($request->input('talles') as $talle_id) {
                     $cantidad = $request->input('cantidad.' . $talle_id);
-                    $talle = Talle::find($talle_id);
-                    if ($talle) {
-                        $talle->productos()->updateExistingPivot($producto->id_producto, ['cantidad' => $cantidad]);
-                    }
+                    
+                    $producto->talles()->syncWithoutDetaching([
+                        $talle_id => ['cantidad' => $cantidad]
+                    ]);
                 }
             }
 

@@ -64,7 +64,7 @@ class AdminController extends Controller
 
     public function logout()
     {
-        auth()->logout();
+        Auth::guard('administradores')->logout();
         return response()->redirectTo("/admin/login")->with("success", "Se cerro sesion exitosamente!");
     }
 

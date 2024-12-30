@@ -38,27 +38,27 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
-Route::get('/admin/login', [AdminController::class, 'index']);
+Route::get('/admin/login', [AdminController::class, 'index'])->name('login');
 Route::post('/admin/login', [AdminController::class, 'login']);
 Route::post('/admin/logout', [AdminController::class, 'logout']);
-Route::get('/admin/add', [AdminController::class, 'create']);
-Route::post('/admin/add', [AdminController::class, 'register']);
+Route::get('/admin/add', [AdminController::class, 'create'])->middleware('auth:administradores');
+Route::post('/admin/add', [AdminController::class, 'register'])->middleware('auth:administradores');
 
-Route::get('/admin/panel', [AdminController::class,'productos']);
-Route::get('/admin/producto/create', [ProductoController::class, 'create']);
-Route::post('/admin/producto/create', [ProductoController::class, 'store']);
-Route::delete('/admin/producto/{producto}', [ProductoController::class, 'destroy']);
-Route::get('/admin/producto/{producto}/edit', [ProductoController::class, 'edit']);
-Route::put('/admin/producto/{producto}', [ProductoController::class, 'update']);
+Route::get('/admin/panel', [AdminController::class,'productos'])->middleware('auth:administradores');
+Route::get('/admin/producto/create', [ProductoController::class, 'create'])->middleware('auth:administradores');
+Route::post('/admin/producto/create', [ProductoController::class, 'store'])->middleware('auth:administradores');
+Route::delete('/admin/producto/{producto}', [ProductoController::class, 'destroy'])->middleware('auth:administradores');
+Route::get('/admin/producto/{producto}/edit', [ProductoController::class, 'edit'])->middleware('auth:administradores');
+Route::put('/admin/producto/{producto}', [ProductoController::class, 'update'])->middleware('auth:administradores');
 
-Route::get('/admin/panel/categorias', [CategoriasController::class, 'index']);
-Route::get('/admin/categoria/create', [CategoriasController::class, 'create']);
-Route::post('/admin/categoria/create', [CategoriasController::class, 'store']);
-Route::delete('/admin/categoria/{categoria}', [CategoriasController::class, 'destroy']);
-Route::get('/admin/categoria/{categoria}/edit', [CategoriasController::class, 'edit']);
-Route::put('/admin/categoria/{categoria}', [CategoriasController::class, 'update']);
+Route::get('/admin/panel/categorias', [CategoriasController::class, 'index'])->middleware('auth:administradores');
+Route::get('/admin/categoria/create', [CategoriasController::class, 'create'])->middleware('auth:administradores');
+Route::post('/admin/categoria/create', [CategoriasController::class, 'store'])->middleware('auth:administradores');
+Route::delete('/admin/categoria/{categoria}', [CategoriasController::class, 'destroy'])->middleware('auth:administradores');
+Route::get('/admin/categoria/{categoria}/edit', [CategoriasController::class, 'edit'])->middleware('auth:administradores');
+Route::put('/admin/categoria/{categoria}', [CategoriasController::class, 'update'])->middleware('auth:administradores');
 
-Route::get('/admin/panel/talles', [TallesController::class, 'tabla']);
+Route::get('/admin/panel/talles', [TallesController::class, 'tabla'])->middleware('auth:administradores');
 
 Route::get('/contacto', function () {
     return view('contacto');

@@ -3,8 +3,8 @@
     
     
     <div class="container tablaTalles">
-        <h1>Panel ABM de categorias</h1>
-        <a href="/admin/categoria/create"><button class="btn btn-link m-3">Agregar nuevo talle</button></a>
+        <h1>Panel ABM de Talles</h1>
+        <a href="#"><button class="btn btn-link m-3">Agregar nuevo talle</button></a>
         <div class="row">
             <div class="list-group list-group-horizontal col-lg-fluid" id="list-tab" role="tablist">
                 @foreach (['1' => 'Hombre', '2' => 'Mujer', '3' => 'Niños', '4' => 'Retro'] as $categoria_id => $categoria_nombre)
