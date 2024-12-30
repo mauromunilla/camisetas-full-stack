@@ -36,6 +36,11 @@
 
             <div class="col-xl-4 col-sm-fluid">
                 <h6 class="nombreProducto" id="nombreProducto"> {{ $producto->nombre_producto }}</h6>
+                <h6>Categorias: 
+                    @foreach($producto->categorias as $categoria)
+                        <span class="badge text-bg-secondary">{{$categoria->nombre_categoria}}</span>
+                    @endforeach
+                </h6>
                 <h5 class="precioProducto" id="precioProducto">$ {{ $producto->precio_producto }}</h5>
                 <form action="">
                     <h4>Talles </h4>
