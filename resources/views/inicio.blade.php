@@ -37,7 +37,7 @@
             @foreach ($productosDestacados as $producto)
                 <div class="col-xl-3 col-md-6 py-3">
                     <div class="producto">
-                        <img src="{{ asset('images/' . $producto->imagen) }}" class="card-img-top" alt="{{ $producto->nombre_producto }}">
+                        <img src="{{ $producto->imagenes->first()->url }}" class="imagenProducto" alt="{{ $producto->nombre_producto }}">
 
                         <div class="descripcionProducto card-body">
                             <h5 class="nombreProducto">{{ $producto->nombre_producto }}</h5>
