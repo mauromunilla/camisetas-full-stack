@@ -44,7 +44,7 @@
                             <h6 class="precioProducto">$ {{ number_format($producto->precio_producto, 2, ',', '.') }}</h6>
                         </div>
 
-                        <a href="#" class="btn btn-primary">Añadir a carrito</a>
+                        <a href="/catalogo/{{$producto->id_producto}}" class="btn btn-primary">Ver</a>
                     </div>
                 </div>
             @endforeach

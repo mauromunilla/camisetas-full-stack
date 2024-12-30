@@ -42,24 +42,30 @@
                     @endforeach
                 </h6>
                 <h5 class="precioProducto" id="precioProducto">$ {{ $producto->precio_producto }}</h5>
-                <form action="">
+                <form action="/carrito/agregar" method="POST">
+                    @csrf
                     <h4>Talles </h4>
                     @foreach ($producto->talles as $talle)
                         <div class="row row-cols-auto align-items-center " >
-                            <div class="form-check form-check-inline col-xl-19 col-lg-8 col-sm-6" >
+                            <div class="form-check form-check-inline col-xl-10 col-lg-8 col-sm-6" >
                                 <input
                                     class="form-check-input"
-                                    type="checkbox"
-                                    id="checkboxTalle{{$talle->id}}"
-                                    name="talles[]"
-                                    value="{{$talle->id}}"
-                                    {{ in_array($talle->id, old('talles', [])) ? 'checked' : '' }}
+                                    type="radio"
+                                    id="radioTalle{{$talle->id}}"
+                                    name="talle"
+                                    value="{{$talle->medida}}"
+                                    {{ old('talle')}}
                                 >
-                                <label class="form-check-label" for="checkboxTalle{{$talle->id}}">{{$talle->medida}}</label>
+                                <label class="form-check-label" for="radioTalle{{$talle->id}}">{{$talle->medida}}</label>
                             </div>
                         </div>
                     @endforeach
-                    <button type="submit" class="btn btn-secondary mt-3">Comprar</button>
+                    <input type="hidden" name="producto_id" value="{{ $producto->id_producto }}">
+                    <div class="row col-6">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" name="cantidad" id="cantidad" value="1" min="1">
+                    </div>
+                    <button type="submit" class="btn btn-secondary mt-3">Agregar al carrito</button>
                 </form>
             </div>
         </div>

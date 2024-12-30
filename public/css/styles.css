@@ -122,3 +122,8 @@ main i {
     height: 600px;
     object-fit: contain;
 }
+
+.btn-carrito{
+    text-decoration: none !important;
+    color: white !important;
+}

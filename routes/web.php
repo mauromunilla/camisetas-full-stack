@@ -4,6 +4,7 @@ use App\Models\Producto;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\TallesController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoriasController;
@@ -74,3 +75,8 @@ Route::get('/preguntas-frecuentes', function () {
 Route::get('/terminos-condiciones', function () {
     return view('/politicas');
 });
+
+Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
+Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+Route::post('/carrito/finalizar', [CarritoController::class, 'finalizar'])->name('carrito.finalizar');

@@ -50,6 +50,9 @@
                         </form> 
                     </ul>
                 </div>
+                <div>
+                    <button class="btn mx-2"><a href="/carrito"><i class="bi bi-cart4 fs-3"></i></a></button>
+                </div>
                 @auth
                     <p class="mensajeBienvenida text-center">¡Bienvenido {{ auth()->user()->nombre }}! </p>
                     <form action="/logout" method="POST">
