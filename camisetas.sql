@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-12-2024 a las 22:10:53
+-- Tiempo de generación: 30-12-2024 a las 02:16:51
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -38,7 +38,8 @@ CREATE TABLE `administradores` (
 --
 
 INSERT INTO `administradores` (`id_admin`, `admin`, `password`) VALUES
-(1, 'tomas', 'contraseña123');
+(1, 'tomas', 'contraseña123'),
+(2, 'admin2', '$2y$10$Uw4ymJlRDPXDmihea3ytEOfBHB/W45.aNirEaSHEsct2w97u5wKYK');
 
 -- --------------------------------------------------------
 
@@ -73,7 +74,8 @@ INSERT INTO `categorias` (`id`, `nombre_categoria`) VALUES
 (15, 'MLS'),
 (16, 'Roshn Saudi League'),
 (17, 'Brasileirao'),
-(18, 'Otras ligas');
+(18, 'Otras ligas'),
+(21, 'ejemplo3');
 
 -- --------------------------------------------------------
 
@@ -99,7 +101,13 @@ INSERT INTO `categoria_producto` (`id`, `categoria_id`, `producto_id`) VALUES
 (11, 10, 8),
 (13, 8, 5),
 (14, 8, 16),
-(15, 9, 15);
+(15, 9, 15),
+(61, 4, 21),
+(62, 7, 21),
+(63, 9, 21),
+(67, 13, 67),
+(68, 7, 67),
+(70, 1, 67);
 
 -- --------------------------------------------------------
 
@@ -146,6 +154,50 @@ INSERT INTO `guia_talles` (`id_talle`, `categoria_id`, `medida`, `ancho_talle`, 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `imagenes`
+--
+
+CREATE TABLE `imagenes` (
+  `id` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
+  `url` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `imagenes`
+--
+
+INSERT INTO `imagenes` (`id`, `producto_id`, `url`) VALUES
+(9, 67, '/storage/imagenes/a9cg7jeiupULDM3MPwK2reK3OFUKnU6rJdW7lzEo.webp'),
+(10, 67, '/storage/imagenes/2Cpc7UwRlCDorDd1p83kgHCGEDlEGmbsM6pQpwyE.webp'),
+(11, 67, '/storage/imagenes/DHcRx0gd2xEhRwneqVAwTVTWOwgvHe1huSo6ONFk.webp'),
+(12, 5, '/storage/imagenes/NgFkbZOEkC4Tn3ELqhE9t56q2qaKLveOXyhe3swr.webp'),
+(13, 5, '/storage/imagenes/oAzUzz3VU9OfAq4UP3BPWqCCcd4sbhjUg5y63P2K.webp'),
+(17, 6, '/storage/imagenes/W7tKi1Q4WsvS1O6ToCOQ8wODhUaIBaONypqD1kah.webp'),
+(18, 6, '/storage/imagenes/1C4hth2XMyfiYjeLHAGR6Ycjd2X57WglG4PDJrjB.webp'),
+(19, 6, '/storage/imagenes/jR8xbAO9oItiC0EE7Ny9DcVWW1okTtTBjwrT3gEP.webp'),
+(20, 7, '/storage/imagenes/23Yx2UKWMHUc60vprWz1T7okpwzcaSOplKzWthJu.webp'),
+(21, 7, '/storage/imagenes/MONPzCLDsdcy63NaBLNqXFhhIOhQyVwvHZZXZWeL.webp'),
+(22, 7, '/storage/imagenes/K6no6PAB0goiO6gAB49sBecZTowY2V4opSnLd7Ia.webp'),
+(23, 8, '/storage/imagenes/9lFa7OhLDip5dodRFeUglD0wiBAIOKTZr8C1XBcU.webp'),
+(24, 8, '/storage/imagenes/la4wUKbNhrXnzibuHUQIthCmSCtVU5AvD0B5DhL1.webp'),
+(25, 8, '/storage/imagenes/Usfy5d0uoPoxL5xfF80XI7L2vgTFIWD484Msra8Y.webp'),
+(26, 15, '/storage/imagenes/QTiLeHKKlqLFC8jLwaKHBLUN06jAjhaDAFL50g2w.webp'),
+(27, 15, '/storage/imagenes/pgGVi54mRkspL3SuTk3jNwXyIRifdlm2SrZGqDzk.webp'),
+(28, 15, '/storage/imagenes/MePfIywbRKb5NdeOZfn1jmS8FufuyNcirBZMdR5k.webp'),
+(29, 16, '/storage/imagenes/iSq4KzCXS0baaidZuvHqiJ1IDfUkddbLCmoZUE0b.webp'),
+(30, 16, '/storage/imagenes/JCc2bzCu3Wq7WOWYBRIDye1UuXnyPx0jAUKzgt87.webp'),
+(31, 16, '/storage/imagenes/KxxN6d8Lt6fICOROjmO0WCRpWm1nCBP11glaemeP.webp'),
+(32, 19, '/storage/imagenes/I8Zvmqw7x3Zgz3WUlsvAG2I6wQLM97mEuIUOPuDw.webp'),
+(33, 19, '/storage/imagenes/g7xZIkNPSZNTXlQBkf63M5bw3LF18YaSpHKu7L6A.webp'),
+(34, 20, '/storage/imagenes/p9uVkDX8Q5LNv0gKnfPRpWi3BoRS328GbyWmLPbN.webp'),
+(35, 20, '/storage/imagenes/RYySExWmjpbmnWxltowWMUhM3yc5vQV01NdxVv76.webp'),
+(36, 21, '/storage/imagenes/pxAivm4A1BTrU0BPc3jjpbxtK26J7VFld7UYnHXN.webp'),
+(37, 21, '/storage/imagenes/GkT33Otu9709nopFE1OaEUonEPbuHtneWPSZ2Yqy.webp');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `productos`
 --
 
@@ -153,7 +205,6 @@ CREATE TABLE `productos` (
   `id_producto` int(11) NOT NULL,
   `nombre_producto` varchar(250) NOT NULL,
   `precio_producto` int(11) NOT NULL,
-  `imagen_producto` varchar(250) DEFAULT NULL,
   `destacado` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -161,16 +212,17 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id_producto`, `nombre_producto`, `precio_producto`, `imagen_producto`, `destacado`) VALUES
-(5, '24-25 Argentina edición 50 aniversario - Jugador', 30000, '', 1),
-(6, '98-99 Roma local', 25000, '', 0),
-(7, '24-25 Real Madrid local - Jugador', 40000, '', 0),
-(8, '96-97 Liverpool visitante manga larga', 35000, '', 1),
-(15, '24-25 Boca Jrs local - fan', 30000, '', 1),
-(16, '95 Italia local ', 40000, '', 1),
-(19, '24-25 Chelsea local - Jugador', 35000, '', 0),
-(20, '24-25 Bayern Arquero local - Fan', 15000, '', 1),
-(21, '06-07 Boca Jrs. Local', 26000, '', 1);
+INSERT INTO `productos` (`id_producto`, `nombre_producto`, `precio_producto`, `destacado`) VALUES
+(5, '24-25 Argentina edición 50 aniversario - Jugador', 30000, 1),
+(6, '98-99 Roma local', 25000, 0),
+(7, '24-25 Real Madrid local - Jugador', 40000, 0),
+(8, '96-97 Liverpool visitante manga larga', 35000, 1),
+(15, '24-25 Boca Jrs local - fan', 30000, 1),
+(16, '95 Italia local', 40000, 1),
+(19, '24-25 Chelsea local - Jugador', 35000, 0),
+(20, '24-25 Bayern Arquero local - Fan', 15000, 1),
+(21, '06-07 Boca Jrs. Local', 26000, 1),
+(67, '12345', 2312, 1);
 
 -- --------------------------------------------------------
 
@@ -203,7 +255,7 @@ INSERT INTO `producto_talle` (`id`, `producto_id`, `talle_id`, `cantidad`) VALUE
 (11, 7, 3, 10),
 (12, 16, 5, 4),
 (13, 16, 6, 5),
-(14, 16, 3, 10),
+(14, 16, 3, 9),
 (15, 7, 5, 3),
 (16, 7, 1, 7),
 (17, 8, 6, 10),
@@ -214,7 +266,9 @@ INSERT INTO `producto_talle` (`id`, `producto_id`, `talle_id`, `cantidad`) VALUE
 (23, 6, 1, 1),
 (24, 6, 6, 4),
 (25, 6, 5, 4),
-(26, 6, 3, 8);
+(26, 6, 3, 8),
+(95, 67, 1, 12),
+(96, 67, 2, 20);
 
 -- --------------------------------------------------------
 
@@ -291,6 +345,13 @@ ALTER TABLE `guia_talles`
   ADD KEY `Categorias` (`categoria_id`);
 
 --
+-- Indices de la tabla `imagenes`
+--
+ALTER TABLE `imagenes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `producto` (`producto_id`);
+
+--
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
@@ -324,19 +385,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria_producto`
 --
 ALTER TABLE `categoria_producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT de la tabla `guia_talles`
@@ -345,16 +406,22 @@ ALTER TABLE `guia_talles`
   MODIFY `id_talle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
+-- AUTO_INCREMENT de la tabla `imagenes`
+--
+ALTER TABLE `imagenes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT de la tabla `producto_talle`
 --
 ALTER TABLE `producto_talle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT de la tabla `talles`
@@ -384,6 +451,12 @@ ALTER TABLE `categoria_producto`
 --
 ALTER TABLE `guia_talles`
   ADD CONSTRAINT `tablaTalles_categorias` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `imagenes`
+--
+ALTER TABLE `imagenes`
+  ADD CONSTRAINT `producto` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto_talle`
