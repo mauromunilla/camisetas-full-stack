@@ -20,6 +20,11 @@
                                 <div class="descripcionProducto card-body">
                                     <h6 id="nombreProducto">{{ $producto->nombre_producto }}</h6>
                                     <h5 id="precioProducto">$ {{ $producto->precio_producto }}</h5>
+                                    <div class="talles-container">
+                                        @foreach ($producto->talles as $talle)
+                                            <button type="button" class="btn btn-primary mb-1" disabled> {{ $talle->medida }} </button>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </a>
                             <a href="#" class="btn btn-primary mb-2">Comprar</a>
