@@ -19,7 +19,7 @@
                     <i class="bi bi-arrow-bar-right"></i>
                 </button>
             </li>
-            <li class="active">
+            <li>
                 <a href="/admin/panel">
                     <i class="bi bi-layout-text-sidebar-reverse fs-3"></i>
                     <span>Productos</span>
@@ -49,11 +49,12 @@
                     <span>Agregar Admin</span>
                 </a>
             </li>
-            <li>
-                <a href="" >
-                    <i class="bi bi-door-open fs-3" ></i>
-                    <span>Salir</span>
-                </a>
+            <li class="mt-auto">
+                <form action="/admin/logout" method="POST">
+                    @csrf
+                    <button class="btn" type="submit"><i class="bi bi-door-open fs-3" ></i></button>
+                    <span> salir <span>
+                </form>
             </li>
         </ul>
     </nav>

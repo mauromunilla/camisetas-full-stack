@@ -28,7 +28,7 @@
                         <form action="/admin/login" method="POST" id="login-form">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input name="loginNombre" type="text" class="form-control" id="floatingInputGroup1" placeholder="Usuario" value="{{ old('loginNombre') }}">
+                                <input name="nombreAdmin" type="text" class="form-control" id="floatingInputGroup1" placeholder="admin" value="{{ old('nombreAdmin') }}">
                                 <label for="floatingInputGroup1">Usuario</label>
                             </div>
                             <div class="form-floating mb-3">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -49,11 +50,11 @@ class AdminController extends Controller
     public function login(Request $request)
     {
         $datos = $request->validate([
-            'admin' => ['required'],
-            'password' => ['required']
+            'nombreAdmin' => ['required'],
+            'loginPassword' => ['required']
         ]);
 
-        if(auth()->attempt(["nombre" => $datos["loginNombre"], "password" => $datos["loginPassword"]])){
+        if(Auth::guard("administradores")->attempt(["admin" => $datos["nombreAdmin"], "password" => $datos["loginPassword"]])){
             return response()->redirectTo("/admin/panel")->with("success", "Se inició sesion correctamente!");
         }
         else{
