@@ -31,104 +31,26 @@
   </section>
 
   <section id="prodDestacados" class="prodDestacados text-center py-3">
-    <h2>Destacados</h2>
-    <div class="container-sm">
-      <div class="row">
-        <div class="col-xl-3 col-md-6">
-          <div class="producto">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="descripcionProducto card-body">
-              <h5 class="nombreProducto" id="nombreProducto">Nombre Item1</h5>
-              <h6 class="precioProducto" id="precioProducto"> $..</h6>
-                  <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
-                  <label class="btn btn-secondary" for="option1">XS</label>
-                  <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                  <label class="btn btn-secondary" for="option2">S</label>
+    <h2>Productos Destacados</h2>
+    <div class="container-sm py-4">
+        <div class="row py-2">
+            @foreach ($productosDestacados as $producto)
+                <div class="col-xl-3 col-md-6 py-3">
+                    <div class="producto">
+                        <img src="{{ asset('images/' . $producto->imagen) }}" class="card-img-top" alt="{{ $producto->nombre_producto }}">
 
-                  <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
-                  <label class="btn btn-secondary" for="option3">M</label>
+                        <div class="descripcionProducto card-body">
+                            <h5 class="nombreProducto">{{ $producto->nombre_producto }}</h5>
+                            <h6 class="precioProducto">$ {{ number_format($producto->precio_producto, 2, ',', '.') }}</h6>
+                        </div>
 
-                  <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
-                  <label class="btn btn-secondary" for="option4">L</label>
-
-                  <input type="radio" class="btn-check" name="options" id="option5" autocomplete="off">
-                  <label class="btn btn-secondary" for="option5">XL</label>
-            </div>
-            <a href="#" class="btn btn-primary">Añadir a carrito</a>
-          </div>
+                        <a href="#" class="btn btn-primary">Añadir a carrito</a>
+                    </div>
+                </div>
+            @endforeach
         </div>
-        <div class="col-xl-3 col-md-6">
-          <div class="producto">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="descripcionProducto card-body">
-              <h5 class="nombreProducto" id="nombreProducto">Nombre Item1</h5>
-              <h6 class="precioProducto" id="precioProducto"> $..</h6>
-                  <input type="radio" class="btn-check" name="options" id="option6" autocomplete="off">
-                  <label class="btn btn-secondary" for="option6">XS</label>
-                  <input type="radio" class="btn-check" name="options" id="option7" autocomplete="off">
-                  <label class="btn btn-secondary" for="option7">S</label>
-
-                  <input type="radio" class="btn-check" name="options" id="option8" autocomplete="off">
-                  <label class="btn btn-secondary" for="option8">M</label>
-
-                  <input type="radio" class="btn-check" name="options" id="option9" autocomplete="off">
-                  <label class="btn btn-secondary" for="option9">L</label>
-
-                  <input type="radio" class="btn-check" name="options" id="option10" autocomplete="off">
-                  <label class="btn btn-secondary" for="option10">XL</label>
-            </div>
-            <a href="#" class="btn btn-primary">Añadir a carrito</a>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-          <div class="producto">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="descripcionProducto card-body">
-              <h5 class="nombreProducto" id="nombreProducto">Nombre Item1</h5>
-              <h6 class="precioProducto" id="precioProducto"> $..</h6>
-                  <input type="radio" class="btn-check" name="options" id="option11" autocomplete="off">
-                  <label class="btn btn-secondary" for="option11">XS</label>
-                  <input type="radio" class="btn-check" name="options" id="option12" autocomplete="off">
-                  <label class="btn btn-secondary" for="option12">S</label>
-
-                  <input type="radio" class="btn-check" name="options" id="option13" autocomplete="off">
-                  <label class="btn btn-secondary" for="option13">M</label>
-
-                  <input type="radio" class="btn-check" name="options" id="option14" autocomplete="off">
-                  <label class="btn btn-secondary" for="option14">L</label>
-
-                  <input type="radio" class="btn-check" name="options" id="option15" autocomplete="off">
-                  <label class="btn btn-secondary" for="option15">XL</label>
-            </div>
-            <a href="#" class="btn btn-primary">Añadir a carrito</a>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-          <div class="producto">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="descripcionProducto card-body">
-              <h5 class="nombreProducto" id="nombreProducto">Nombre Item1</h5>
-              <h6 class="precioProducto" id="precioProducto"> $..</h6>
-                  <input type="radio" class="btn-check" name="options" id="option16" autocomplete="off">
-                  <label class="btn btn-secondary" for="option16">XS</label>
-                  <input type="radio" class="btn-check" name="options" id="option17" autocomplete="off">
-                  <label class="btn btn-secondary" for="option17">S</label>
-
-                  <input type="radio" class="btn-check" name="options" id="option18" autocomplete="off">
-                  <label class="btn btn-secondary" for="option18">M</label>
-
-                  <input type="radio" class="btn-check" name="options" id="option19" autocomplete="off">
-                  <label class="btn btn-secondary" for="option19">L</label>
-
-                  <input type="radio" class="btn-check" name="options" id="option20" autocomplete="off">
-                  <label class="btn btn-secondary" for="option20">XL</label>
-            </div>
-            <a href="#" class="btn btn-primary">Añadir a carrito</a>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
+</section>
 
   <section class="text-center py-4">
     <div class="nosotros container-sm col-lg-10">
