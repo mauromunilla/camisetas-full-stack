@@ -1,7 +1,7 @@
 @include('layout.header')
 
 <br><br><br>
-<div class="row justify-content-center">
+<div class="row justify-content-center gx-0">
     <div class="col-md-8">
         <h1 class="text-center mb-4">Contactate</h1>
         <h2 class="text-center mb-4">¡Estamos aquí para ayudarte!</h2>
